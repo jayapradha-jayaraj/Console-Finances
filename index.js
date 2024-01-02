@@ -1,6 +1,6 @@
 var finances = [
   ['Jan-2010', 867884],
-  ['Feb-2010', 984655],
+  ['Feb-2010', 984655],   
   ['Mar-2010', 322013],
   ['Apr-2010', -69417],
   ['May-2010', 310503],
@@ -86,3 +86,103 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+var i,j,k,l,total,total_Loss,total_Profit;
+var Loss=[];
+var Profit=[];
+total_Loss=0;
+total_Profit=0;
+total=0;
+i=1;
+var temp=0;
+var firstnumber=0;
+var secondnumber=0;
+var differencearr=0;
+    
+
+function totalFinances(){
+  //find profit and loss number
+for(j=0;j<finances.length;j++){
+  //for(i=1; i<finances.length;){
+       //console.log("j and i  " +j+" " +i +" ");
+    if (finances[j][i] < 0) //to find negative number
+    {
+      Loss[j] = finances[j][i];
+      if(Loss[j] != "")
+      {
+          total_Loss += Loss[j]; 
+            // console.log("Loss {0} : {1} " + j +" " +Loss[j] + " Total : " + total_Loss);
+      }
+    }
+    else if(finances[j][i] > 0){
+      Profit[j] = finances[j][i];
+      if(Profit[j] != "")
+      {
+          total_Profit += Profit[j]; 
+          // console.log("profit {0} : {1} " + j +" " +Profit[j] + " Total : " + total_Profit);
+      }
+    }
+}
+  // console.log("Total profit : " + total_Profit); //44043773
+   //console.log("Total Loss : " + total_Loss + " "+ total); //7327426
+  // Sum the loss seperatly
+   total = total_Profit-(-total_Loss); //38382578
+     // console.log("Total : " + total); 
+   return total;
+
+};
+   
+ function finddifference( ){
+     for(j=0;j<finances.length-1;j++){
+         firstnumber=finances[j][i];
+         j=j+1;
+         secondnumber=finances[j][i];
+        //console.log("j and i  " +j+" " +i +" ");
+            //greterprofit(firstnumber,secondnumber);
+          if (firstnumber < 0  || secondnumber < 0)
+            {
+                if(firstnumber < 0 ){ 
+                 differencearr = secondnumber-(-firstnumber); 
+                }
+                else if(secondnumber < 0 ){
+                    differencearr = (-secondnumber)-firstnumber;
+                }else {
+                   differencearr = (-secondnumber)-(-firstnumber);
+                }
+               // console.log("yyyy" +temp + " "+ differencearr);
+                temp = temp + (-differencearr)
+                 // console.log("zzzz" +temp + " "+ differencearr);
+            }
+            else if (firstnumber > 0  || secondnumber > 0){
+               differencearr = (secondnumber-firstnumber); 
+               temp += differencearr;
+            }
+            
+          
+        // console.log("  firstnumber:" +firstnumber+ "  secondnumber: "+secondnumber+ "   differencearr: "+differencearr+ "  temp:"  +temp);
+       
+         j=j-1;
+     }   
+     temp = temp/finances.length-1;
+     return temp;
+  };
+
+var firstMonth,secondMonth ;
+// find the gretest month
+function greterprofit(x, y){
+    i=0;
+    for(j=0;j<finances.length;j++){
+        firstMonth=finances[j][i];
+       // console.log("xxx"+x + " "+y)
+    }
+    
+    
+}
+
+
+console.log("Financial Analysis");
+console.log("----------------------------");
+console.log("Total Months: " + finances.length);
+console.log("Total: " + totalFinances());
+console.log("Average Change: " + finddifference());
+console.log("Greatest Increase in Profits/Losses: " +greterprofit());
+console.log("Greatest Decrease in Profits/Losses: ");
